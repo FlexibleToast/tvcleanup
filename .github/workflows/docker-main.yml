@@ -29,6 +29,4 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: 
-          - flexibletoast/tvcleanup:latest
-          - flexibletoast/tvcleanup:0.${{ github.run_number }}
+        tags: flexibletoast/tvcleanup:latest, flexibletoast/tvcleanup:0.${{ github.run_number }}
