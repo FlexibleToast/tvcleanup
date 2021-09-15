@@ -11,7 +11,7 @@ ENV TV_PATH=/tv \
 
 WORKDIR /app
 
-COPY main.py requirements.txt .
+COPY main.py requirements.txt ./
 
 RUN groupadd -g ${GUID} tvclean &&\
     useradd  -m -u ${PUID} -g tvclean tvclean &&\

@@ -16,7 +16,7 @@ docker run -d --name tvcleanup \
     -e PUID=1000
     -e PGID=1000
     -e TZ=Europe/London
-    -v /path/to/config/tvclean.conf:/config \
+    -v /path/to/config:/config \
     -v /path/to/tv_shows:/tv \
     flexibletoast/tvcleanup:latest
 ```
@@ -35,7 +35,7 @@ services:
       PUID: 1000
       PGID: 1000
     volumes:
-      - /path/to/config/tvclean.conf:/config
+      - /path/to/config:/config
       - /path/to/tv_shows:/tv
 ```
 
