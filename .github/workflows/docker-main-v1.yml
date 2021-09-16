@@ -33,7 +33,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: flexibletoast/tvcleanup:latest, flexibletoast/tvcleanup:1.${{ steps.minor-version.outputs.version }}
+        tags: flexibletoast/tvcleanup:1.${{ steps.minor-version.outputs.version }}, flexibletoast/tvcleanup:latest
 
     - name: Update Docker Hub Description
       uses: peter-evans/dockerhub-description@v2

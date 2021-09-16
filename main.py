@@ -11,6 +11,8 @@ showList = os.environ['CONF']
 logfile = os.environ['LOG']
 exclude = os.environ['EXCLUDE'].split(',')
 cron = os.environ['CRON']
+uid = int(os.environ['PUID'])
+gid = int(os.environ['PGID'])
 
 ############################# End Variables ############################
 
@@ -59,7 +61,14 @@ os.chdir(path)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 logging.info("Starting TVcleanup with cron " + cron)
 
+os.setgid(gid)
+os.setuid(uid)
+
+logging.info("Using user ID: " + str(os.getuid()) + ", and group ID: " + str(os.getgid()))
+
 while True:
   if pycron.is_now(cron):
     main()
+    time.sleep(60)
+  else:
     time.sleep(60)
