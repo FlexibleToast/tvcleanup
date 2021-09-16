@@ -16,10 +16,6 @@ cron = os.environ['CRON']
 
 
 def main():
-  logging.basicConfig(filename=os.path.join(path, logfile), \
-    level=logging.INFO,format='%(asctime)s %(message)s')
-  os.chdir(path)
-
   logging.info("************Begin TV Cleanup************")
   inFile = open(showList)
   for line in inFile:
@@ -34,17 +30,17 @@ def clean(cleanPath, cleanItem):
   if os.path.isdir(cleanPath):
     try:
       os.rmdir(cleanPath)
-      logging.info("Removed directory: %s", cleanPath)
+      logging.info("Removed directory: " + cleanPath)
     except OSError:
-      logging.error("Unable to remove directory: %s", cleanPath)
+      logging.error("Unable to remove directory: " + cleanPath)
   else:
     if not cleanPath.endswith(tuple(exclude)):
       try:
         if os.path.exists(cleanPath):
           os.remove(cleanPath)
-          logging.info("Removed show: %s", cleanItem)
+          logging.info("Removed show: " + cleanItem)
       except OSError:
-        logging.error("Unable to remove show: %s", cleanItem)
+        logging.error("Unable to remove show: " + cleanItem)
 #-----------------------------------------------------------------------
 def cleanup(numDays, cleanPath):
   numSecs = time.time() - (numDays * 24 * 60 * 60)
@@ -57,6 +53,11 @@ def cleanup(numDays, cleanPath):
       if not os.listdir(root):
         clean(root, name)
 #-----------------------------------------------------------------------
+
+
+os.chdir(path)
+logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
+logging.info("Starting TVcleanup with cron " + cron)
 
 while True:
   if pycron.is_now(cron):
