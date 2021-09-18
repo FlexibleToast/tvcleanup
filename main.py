@@ -56,8 +56,9 @@ def cleanup(numDays, cleanPath):
         clean(root, name)
 #-----------------------------------------------------------------------
 
-
+# Setup app
 os.chdir(path)
+time.tzset()
 logging.basicConfig(level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 logging.info("Starting TVcleanup with cron " + cron)
 
