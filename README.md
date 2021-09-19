@@ -31,7 +31,7 @@ services:
     image: flexibletoast/tvcleanup
     container_name: tvcleanup
     environment:
-      TV: Europe/London
+      TZ: Europe/London
       PUID: 1000
       PGID: 1000
     volumes:
